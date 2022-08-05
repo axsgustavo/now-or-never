@@ -1,7 +1,11 @@
 # now-or-never
 Essa aplicação é uma Lista de Tarefas.
 
-Aplicação desenvolvida em ReactJS, Styled-Components, Axios, MirageJS.
+### O que foi usado
+* ReactJS
+* Styled-components
+* MirageJS
+* Axios
 
 ### Para inicializar o projeto:
 * Clone-o repositório para sua máquina.
