@@ -1,0 +1,32 @@
+{
+  "name": "now-or-never-js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "miragejs": "^0.1.45",
+    "react": "^18.2.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.3.0",
+    "react-icons": "^4.4.0",
+    "react-modal": "^3.15.1",
+    "react-router-dom": "^6.3.0",
+    "react-simple-timefield": "^3.2.5",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "vite": "^3.0.0"
+  }
+}
