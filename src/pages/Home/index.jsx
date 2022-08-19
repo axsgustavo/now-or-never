@@ -17,7 +17,11 @@ export function Home({ openNewTaskModal }) {
         <title>NORN | Suas tarfas</title>
       </Helmet>
 
-      <TitlePage text="Bem vindo ao" bold="now or never" />
+      {tasks.length == 0 ? (
+        <TitlePage text="Bem vindo ao" bold="now or never" />
+      ) : (
+        <TitlePage text="Bem vindo ao" bold="now or never" size="1.5rem" lineHeight="1.5rem" />
+      )}
 
       <BoxContent>
         {tasks.length == 0 && (

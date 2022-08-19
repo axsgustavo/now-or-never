@@ -1,17 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 
-import { useTasks } from "../../hooks/useTasks";
-
-import { BiHomeAlt } from 'react-icons/bi';
-import { CgList } from 'react-icons/cg';
-
+import { FaListAlt, FaRegListAlt, FaCalendarAlt, FaRegCalendarAlt } from 'react-icons/fa';
 import { Container } from "./styles";
 
 import logoImg from "../../assets/img/logo.svg";
 
 export function SideNavigation() {
-  const { tasks } = useTasks();
-
   return (
     <Container>
       <Link to="/">
@@ -20,25 +14,17 @@ export function SideNavigation() {
 
       <ul>
         <li>
-          <NavLink
-            to="/"
-            style={({ isActive  }) => isActive  ? {opacity: 1} : {opacity: 0.5}}
-          >
-            <BiHomeAlt size={30} />
+          <NavLink to="/" style={({ isActive }) => isActive ? {opacity: 1} : {opacity: 0.5}}>
+            {({ isActive }) => isActive ? <FaListAlt /> : <FaRegListAlt />}
           </NavLink>
-          <span>Inicio</span>
+          <span>Tarefas</span>
         </li>
-        {/* {folders.length > 0 && (
-          <li>
-            <NavLink 
-              to="/foledrs"
-              style={({ isActive  }) => isActive  ? {opacity: 1} : {opacity: 0.5}}
-            >
-              <CgList size={30} />
-            </NavLink>
-            <span>Pastas</span>
-          </li>
-        )} */}
+        <li>
+          <NavLink to="/calendar" style={({ isActive }) => isActive ? {opacity: 1} : {opacity: 0.5}}>
+            {({ isActive }) => isActive ? <FaCalendarAlt /> : <FaRegCalendarAlt />}
+          </NavLink>
+          <span>Calendario</span>
+        </li>
       </ul>
     </Container>
   );

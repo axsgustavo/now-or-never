@@ -22,12 +22,24 @@ export const Container = styled.div`
     color: var(--text);
     font-size: 1.4rem;
   }
+
+  @media screen and (max-width: 720px) {
+    width: 100%;
+    margin-left: 0;
+    
+    height: calc(100vh - 40px);
+    margin-bottom: 40px;
+    
+    padding: 20px;
+  }
 `;
 
 export const BoxContent = styled.div`
+  max-width: 500px;
   width: 100%;
   height: 100%;
   margin: 30px 0;
+  position: relative;
 
   display: flex;
   flex-direction: column;

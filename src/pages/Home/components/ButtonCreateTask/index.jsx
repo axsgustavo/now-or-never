@@ -1,19 +1,26 @@
-import { BiFolderPlus } from "react-icons/bi";
+import { useTasks } from "../../../../hooks/useTasks";
 
-import { Container } from "./styles";
+import { MdAddTask } from "react-icons/md";
+import { AddButton, Container } from "./styles";
 
 export function ButtonCreateTask({ openNewTaskModal }) {
-  return (
+  const { tasks } = useTasks();
+
+  return tasks.length > 0 ? (
+      <AddButton type="button" onClick={() => openNewTaskModal([])}>
+        <MdAddTask size={20} />
+      </AddButton>
+    ) : (
     <Container>
       <button
         type="button"
-        onClick={openNewTaskModal}
+        onClick={() => openNewTaskModal([])}
       >
         Criar uma nova tarefa
         <span>
-          <BiFolderPlus size={30} />
+          <MdAddTask size={25} />
         </span>
       </button>
     </Container>
-  );
+    )
 }

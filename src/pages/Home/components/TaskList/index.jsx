@@ -1,20 +1,24 @@
+import toast from "react-hot-toast";
+
 import { useTasks } from "../../../../hooks/useTasks";
 
 import { BsCheck } from "react-icons/bs";
-import { TbTrash } from 'react-icons/tb';
-
-import { Container } from "./styles";
+import { Checkbox, Container, Table, TableRow, ViewColor } from "./styles";
 
 export function TaskList() {
-  const { tasks, deleteTask } = useTasks();
+  const { tasks, updateStatusTask } = useTasks();
 
-  function handleDeleteFolder(id, name) {
-    deleteTask(id, name);
+  function handleChangeStatus(id, status) {
+    updateStatusTask(id, status);
+    
+    if (status) {
+      toast.success(`Tarefa concluida.`);
+    }
   }
 
   return (
     <Container>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Tarefas</th>
@@ -25,22 +29,23 @@ export function TaskList() {
         </thead>
         <tbody>
         {tasks.map((task, index) => (
-          index < 5 && (
-            <tr key={index}>
-              <td>{task.name}</td>
-              <td>{task.startTime}</td>
-              <td>{task.endTime}</td>
-              <td>
-                <label>
-                  <input type="checkbox" />
-                  <span><BsCheck size={24} /></span>
-                </label>
-              </td>
-            </tr>
-          )
+          <TableRow isActive={task.status} key={index}>
+            <td>
+              <ViewColor backgroundColor={task.color} />
+              {task.name}
+            </td>
+            <td>{task.startTime}</td>
+            <td>{task.endTime}</td>
+            <td>
+              <Checkbox>
+                <input type="checkbox" onChange={(event) => handleChangeStatus(task.id, event.target.checked)} />
+                <span><BsCheck size={24} /></span>
+              </Checkbox>
+            </td>
+          </TableRow>
         ))}
         </tbody>
-      </table>
+      </Table>
     </Container>
   );
 }

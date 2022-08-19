@@ -1,127 +1,92 @@
 import Modal from "react-modal";
-import TimeField from "react-simple-timefield";
 import toast from "react-hot-toast";
 
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
 import { useTasks } from "../../hooks/useTasks";
 
-import { IoMdClose } from 'react-icons/io';
+import { StepOne } from "./components/StepOne";
+import { StepTwo } from "./components/StepTwo";
 
-import { ButtonCreateNewTask, ButtonStepControl, Container } from "./styles";
+import { IoMdClose } from "react-icons/io";
+import { Container } from "./styles";
 
-export function NewTaskModal({ isOpen, onRequestClose }) {
+
+export function NewTaskModal({ isOpen, onRequestClose, dateRange }) {
   const { createTask } = useTasks();
 
   const [stepControl, setStepControl] = useState(0);
   const [title, setTitle] = useState('');
+  const [date, setDate] = useState([new Date(), new Date()]);
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-
-  function handleNextStep(event) {
-    event.preventDefault();
-
-    if (stepControl < 2) {
-      if (!(title.replace(/ /g, '').length > 0)) {
-        return toast.error("O título deve ter pelo menos um caracter!")
-      }
-      setStepControl(stepControl + 1);
-    }
-  }
-
-  function handlePreviousStep(event) {
-    event.preventDefault();
-
-    if (stepControl > 0) {
-      setStepControl(stepControl - 1);
-    }
-  }
+  const [color, setColor] = useState('');
 
   async function handleCreateNewTask(event) {
     event.preventDefault();
 
-    if(!startTime || !endTime) {
-      return toast.error("Coloque os horarios das suas tarefas!");
+    if (!startTime || !endTime) {
+      return toast.error("Coloque os horarios da sua tarefa!");
+    }
+
+    if (!color) {
+      return toast.error("Defina uma cor para sua tarefa!");
     }
 
     if (title.replace(/ /g,'') == '') return;
 
-    await createTask(title, startTime, endTime);
+    await createTask(title, date, startTime, endTime, color);
 
+    setStepControl(0);
     setTitle('');
+    setDate([new Date(), new Date()])
     setStartTime('');
     setEndTime('');
-    setStepControl(0);
-    onRequestClose();
+    setColor('')
+    onRequestClose([]);
   }
+
+  useEffect(() => {
+    if (dateRange.length > 0) {
+      setDate(dateRange);
+    }
+  }, [dateRange]);
 
   return (
     <Modal
       isOpen={isOpen}
-      onRequestClose={onRequestClose}
+      onRequestClose={() => onRequestClose([])}
       className="react-modal"
       overlayClassName="react-modal-overlayer"
     >
-      <button className="react-modal-button-close" onClick={onRequestClose}>
+      <button className="react-modal-button-close" onClick={() => onRequestClose([])}>
         <IoMdClose />
       </button>
 
       <Container>
         {stepControl == 0 && (
-        <>
-          <h2>Criar nova tarefa</h2>
-
-          <label>
-            <input 
-              required 
-              type="text"
-              value={title}
-              onChange={event => setTitle(event.target.value)} 
-            />
-            <span>Título da tarefa</span>
-          </label>
-
-          <ButtonStepControl 
-            type="button" 
-            onClick={handleNextStep}
-          >
-            Proximo  
-          </ButtonStepControl>
-        </>
+          <StepOne 
+            title={title}
+            setTitle={event => setTitle(event.target.value)}
+            date={date}
+            setDate={setDate}
+            stepControl={stepControl}
+            setStepControl={setStepControl}
+          />
         )}
 
         {stepControl == 1 && (
-        <>
-          <h2>{title}</h2>
-
-          <div>
-            <span>Horario inicial</span>
-            <TimeField
-              showSeconds={true}
-              style={{width: '100%'}}
-              value={startTime}
-              onChange={event => setStartTime(event.target.value)}
-            />
-          </div>
-
-          <div>
-            <span>Horario Final</span>
-            <TimeField
-              showSeconds={true}
-              style={{width: '100%'}}
-              value={endTime}
-              onChange={event => setEndTime(event.target.value)}
-            />
-          </div>
-
-          <ButtonStepControl type="button" onClick={handlePreviousStep} backgrounColor="#333">
-            voltar  
-          </ButtonStepControl>
-
-          <ButtonCreateNewTask type="button" onClick={handleCreateNewTask}>
-            Criar nova tarefa
-          </ButtonCreateNewTask>
-        </>
+          <StepTwo
+            title={title}
+            startTime={startTime}
+            setStartTime={event => setStartTime(event.target.value)}
+            endTime={endTime}
+            setEndTime={event => setEndTime(event.target.value)}
+            color={color}
+            setColor={setColor}
+            stepControl={stepControl}
+            setStepControl={setStepControl}
+            onCreateNewTask={handleCreateNewTask}
+          />
         )}
       </Container>
     </Modal>
