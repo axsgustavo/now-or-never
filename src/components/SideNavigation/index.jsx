@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 import { FaListAlt, FaRegListAlt, FaCalendarAlt, FaRegCalendarAlt } from 'react-icons/fa';
@@ -5,7 +6,7 @@ import { Container } from "./styles";
 
 import logoImg from "../../assets/img/logo.svg";
 
-export function SideNavigation() {
+function SideNavigation() {
   return (
     <Container>
       <Link to="/">
@@ -29,3 +30,5 @@ export function SideNavigation() {
     </Container>
   );
 }
+
+export default memo(SideNavigation);

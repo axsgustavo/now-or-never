@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Container } from "./styles";
 
 export function TitlePage(props) {
@@ -7,3 +8,5 @@ export function TitlePage(props) {
     </Container>
   )
 }
+
+export default memo(TitlePage);

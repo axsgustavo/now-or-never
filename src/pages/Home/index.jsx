@@ -1,10 +1,10 @@
 import { Helmet } from "react-helmet";
 import { useTasks } from "../../hooks/useTasks";
 
-import { TitlePage } from "../../components/TitlePage";
-import { CurrentDate } from "../../components/CurrentDate";
-import { TaskList } from "./components/TaskList";
-import { ButtonCreateTask } from "./components/ButtonCreateTask";
+import TitlePage from "../../components/TitlePage";
+import CurrentDate from "../../components/CurrentDate";
+import TaskList from "./components/TaskList";
+import ButtonCreateTask from "./components/ButtonCreateTask";
 
 import { Container, BoxContent } from "./styles"
 

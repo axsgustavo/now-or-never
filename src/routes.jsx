@@ -6,7 +6,7 @@ import { Home } from './pages/Home';
 import { Calendar } from './pages/Calendar';
 
 import { NewTaskModal } from './components/NewTaskModal';
-import { SideNavigation } from './components/SideNavigation';
+import SideNavigation from './components/SideNavigation';
 
 import Modal from 'react-modal';
 

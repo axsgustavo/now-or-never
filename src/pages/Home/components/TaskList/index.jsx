@@ -1,11 +1,12 @@
 import toast from "react-hot-toast";
 
+import { memo } from "react";
 import { useTasks } from "../../../../hooks/useTasks";
 
 import { BsCheck } from "react-icons/bs";
 import { Checkbox, Container, Table, TableRow, ViewColor } from "./styles";
 
-export function TaskList() {
+function TaskList() {
   const { tasks, updateStatusTask } = useTasks();
 
   function handleChangeStatus(id, status) {
@@ -49,3 +50,5 @@ export function TaskList() {
     </Container>
   );
 }
+
+export default memo(TaskList);

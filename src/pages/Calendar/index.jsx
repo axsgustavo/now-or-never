@@ -3,7 +3,8 @@ import TaskCalendar from "rc-year-calendar";
 import { Helmet } from "react-helmet";
 import { useTasks } from "../../hooks/useTasks";
 
-import { TitlePage } from "../../components/TitlePage";
+import TitlePage from "../../components/TitlePage";
+
 import { Container } from "./styles";
 
 import 'rc-year-calendar/locales/rc-year-calendar.pt';

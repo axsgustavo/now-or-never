@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { Container } from "./styles";
 
-export function CurrentDate(props) {
+function CurrentDate(props) {
   const date = new Date();
 
   let dateFormat = {
@@ -21,3 +22,5 @@ export function CurrentDate(props) {
     </Container>
   );
 }
+
+export default memo(CurrentDate)

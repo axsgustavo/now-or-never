@@ -1,15 +1,16 @@
+import { memo } from "react";
 import { useTasks } from "../../../../hooks/useTasks";
 
 import { MdAddTask } from "react-icons/md";
 import { AddButton, Container } from "./styles";
 
-export function ButtonCreateTask({ openNewTaskModal }) {
+function ButtonCreateTask({ openNewTaskModal }) {
   const { tasks } = useTasks();
 
   return tasks.length > 0 ? (
-      <AddButton type="button" onClick={() => openNewTaskModal([])}>
-        <MdAddTask size={20} />
-      </AddButton>
+    <AddButton type="button" onClick={() => openNewTaskModal([])}>
+      <MdAddTask size={20} />
+    </AddButton>
     ) : (
     <Container>
       <button
@@ -22,5 +23,7 @@ export function ButtonCreateTask({ openNewTaskModal }) {
         </span>
       </button>
     </Container>
-    )
+  )
 }
+
+export default memo(ButtonCreateTask);

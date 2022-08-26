@@ -10,7 +10,6 @@ import { StepTwo } from "./components/StepTwo";
 import { IoMdClose } from "react-icons/io";
 import { Container } from "./styles";
 
-
 export function NewTaskModal({ isOpen, onRequestClose, dateRange }) {
   const { createTask } = useTasks();
 
