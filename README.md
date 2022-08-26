@@ -3,6 +3,8 @@ Essa aplicação é uma Lista de Tarefas.
 
 ### O que foi usado
 * react
+  - context
+  - memo
 * styled-components
 * miragejs
 * axios
